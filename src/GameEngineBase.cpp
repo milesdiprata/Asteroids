@@ -7,8 +7,6 @@ GameEngineBase::GameEngineBase()
 {
     _renderer = nullptr;
 	_window = nullptr;
-    // ScreenWidth = 0;
-    // ScreenHeight = 0;
     _screenHeight = INT_MIN;
     _screenWidth = INT_MIN;
 }

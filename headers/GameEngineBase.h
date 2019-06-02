@@ -15,9 +15,6 @@ public:
     GameEngineBase();
     ~GameEngineBase();
 
-	// int ScreenWidth;
-	// int ScreenHeight;
-
 	void InitalizeGraphics(char * windowTitle, const int width, const int height);	
 						   const Uint8 * GetKeyState();	
 	void DrawLine(const int x1, const int y1, const int x2, const int y2, const Color color);

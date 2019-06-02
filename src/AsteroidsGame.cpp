@@ -40,7 +40,12 @@ void AsteroidsGame::OnUserCreate()
     srand(time(NULL));
 
     // Create player
-    _player = new SpaceObject(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f, 0.0f, 0.0f, 5, 0.0f);
+    _player = new SpaceObject(GetScreenWidth() / 2.0f, 
+                              GetScreenHeight() / 2.0f, 
+                              0.0f, 
+                              0.0f, 
+                              5, 
+                              0.0f);
     // Player Wireframe
     _player->PushWireFrameCoordinatePair(0.0f, -5.0f);
     _player->PushWireFrameCoordinatePair(-2.5f, 2.5f);
@@ -76,11 +81,10 @@ void AsteroidsGame::HandleUserInput(const float elapsedTime)
     if (keyState[SDL_SCANCODE_SPACE] && SDL_PollEvent(&e) && e.type == SDL_KEYUP)
     {
         SpaceObject* newBullet = new SpaceObject(_player->X() + (15.0f * sinf(_player->Theta())), 
-                                                    _player->Y() + (15.0f * -cosf(_player->Theta())), 
-                                                    200.0f * sinf(_player->Theta()),
-                                                    200.0f * -cosf(_player->Theta()), 
-                                                    1, 
-                                                    0.0f);
+                                                 _player->Y() + (15.0f * -cosf(_player->Theta())),200.0f * sinf(_player->Theta()),
+                                                 200.0f * -cosf(_player->Theta()), 
+                                                 1,
+                                                 0.0f);
         for (int i = 0; i < 25; i++)
         {
             float angle = ((float)i / (float)25) * 2 * M_PI;
@@ -96,7 +100,8 @@ void AsteroidsGame::HandleUserInput(const float elapsedTime)
 const bool AsteroidsGame::ShouldDisposeBullet(SpaceObject* bullet)
 {
     return bullet != nullptr && 
-        (bullet->X() < 1 || bullet->X() > GetScreenWidth() || bullet->Y() < 1 || bullet->Y() > GetScreenHeight());
+        (bullet->X() < 1 || bullet->X() > GetScreenWidth() 
+            || bullet->Y() < 1 || bullet->Y() > GetScreenHeight());
 }
 
 
@@ -128,14 +133,14 @@ void AsteroidsGame::OnUserUpdate(const float elapsedTime)
         if (!ShouldDisposeBullet(b))
             DrawSpaceObject(b);
         else
-            _bullets.erase(remove(_bullets.begin(), _bullets.end(), b), _bullets.end());
+            removeSpaceObject(_bullets, b);
         
         // Check for bullet collision with asteroids
         for (auto &a : _asteroids)
         {
             if (IsPointInsideCircle(a->X(), a->Y(), a->Size(), b->X(), b->Y()))
             {
-                _bullets.erase(remove(_bullets.begin(), _bullets.end(), b), _bullets.end());
+                removeSpaceObject(_bullets, b);
                 
                 // Create smaller asteroids
                 if (a->Size() > MIN_ASTEROID_SIZE)
@@ -152,7 +157,7 @@ void AsteroidsGame::OnUserUpdate(const float elapsedTime)
 
                     
                 }
-                _asteroids.erase(remove(_asteroids.begin(), _asteroids.end(), a), _asteroids.end());
+                removeSpaceObject(_asteroids, a);
             }
         }
 
@@ -184,7 +189,9 @@ void AsteroidsGame::DrawSpaceObject(SpaceObject* spaceObject)
     }
 }
 
-const bool AsteroidsGame::IsPointInsideCircle(const float circleX, const float circleY, const float circleSize, const float pointX, const float pointY)
+const bool AsteroidsGame::IsPointInsideCircle(const float circleX, const float circleY, 
+                                              const float circleSize, const float pointX, 
+                                              const float pointY)
 {
     return sqrtf( ((pointX - circleX) * (pointX - circleX)) + 
                   ((pointY - circleY) * (pointY - circleY)) ) < circleSize;
@@ -203,4 +210,9 @@ const int AsteroidsGame::getRandomInt(const int min, const int max)
 const float AsteroidsGame::getRandomFloat()
 {
     return (float)rand() / (float)RAND_MAX;
+}
+
+void AsteroidsGame::removeSpaceObject(vector<SpaceObject*>& vector, SpaceObject*& spaceObj)
+{
+    vector.erase(remove(vector.begin(), vector.end(), spaceObj), vector.end());
 }
