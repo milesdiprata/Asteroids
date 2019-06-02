@@ -1,0 +1,11 @@
+main
+asteroids
+.DS_Store
+headers/.DS_Store
+src/.DS_Store
+object
+object/*.o
+object/*.d
+object/.DS_Store
+.vscode/
+AsteroidsNew.code-workspace
