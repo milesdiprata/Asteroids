@@ -39,6 +39,7 @@ void AsteroidsGame::OnUserCreate()
 {
     srand(time(NULL));
 
+    // TODO: Put this in its own class
     // Create player
     _player = new SpaceObject(GetScreenWidth() / 2.0f, 
                               GetScreenHeight() / 2.0f, 
@@ -185,7 +186,8 @@ void AsteroidsGame::DrawSpaceObject(SpaceObject* spaceObject)
         DrawLine(transformedModel[i % numPairs].first,
                  transformedModel[i % numPairs].second, 
                  transformedModel[j % numPairs].first, 
-                 transformedModel[j % numPairs].second, WHITE);
+                 transformedModel[j % numPairs].second, 
+                 WHITE);
     }
 }
 
