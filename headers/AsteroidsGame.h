@@ -36,6 +36,7 @@ protected:
 private:
     const int getRandomInt(const int min, const int max);
     const float getRandomFloat();
+    void removeSpaceObject(vector<SpaceObject*>& vector, SpaceObject*& spaceObj);
 
 
     vector<SpaceObject*> _asteroids;

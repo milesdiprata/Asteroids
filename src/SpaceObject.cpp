@@ -11,8 +11,8 @@ SpaceObject::~SpaceObject()
 {
 }
 
-SpaceObject::SpaceObject(const float x, const float y, const float dx, const float dy, const int size,
-                         const float theta)
+SpaceObject::SpaceObject(const float x, const float y, const float dx, const float dy, 
+                         const int size,const float theta)
 {
     _x = x;
     _y = y;
@@ -113,7 +113,6 @@ void SpaceObject::UpdatePosition(const float elapsedTime)
 const vector<pair<float, float> > SpaceObject::ApplyTransformations()
 {
     vector<pair<float, float> > transformedCoordinatePairs;
-                                        // = vector<pair<float, float> >(_wireFrameCoordinatePairs);
     int numPairs = _wireFrameCoordinatePairs.size();
     transformedCoordinatePairs.resize(numPairs);
 
@@ -129,7 +128,6 @@ const vector<pair<float, float> > SpaceObject::ApplyTransformations()
         transformedCoordinatePairs[i].first *= _size;
         transformedCoordinatePairs[i].second *= _size;
     }
-
     // Translate
     for (int i = 0; i < numPairs; i++)
     {
@@ -152,6 +150,5 @@ const float SpaceObject::rotateY(const float initialX, const float initialY)
 }
 
 void SpaceObject::GenerateWireFrameModel()
-{
-    
+{   
 }
