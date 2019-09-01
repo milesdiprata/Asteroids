@@ -1,7 +1,5 @@
 #include "Asteroid.h"
 
-using namespace std;
-
 Asteroid::Asteroid() : SpaceObject()
 {}
 
@@ -49,7 +47,7 @@ const inline int Asteroid::getRandomInt(const int min, const int max) const
 {
     if (max < min)
 	{
-		cerr << "Error: Max less than min! Cannot generate random number." << endl;
+		std::cerr << "Error: Max less than min! Cannot generate random number." << std::endl;
 		return INT_MIN;
 	}
 	return min + rand() / (RAND_MAX / (max - min + 1) + 1);
