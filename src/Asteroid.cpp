@@ -3,14 +3,13 @@
 using namespace std;
 
 Asteroid::Asteroid() : SpaceObject()
-{
-}
+{}
 
-Asteroid::Asteroid(const int screenWidth, const int screenHeight, const int size)
+Asteroid::Asteroid(const int maxXSpawn, const int maxYSpawn, const int size)
 {
     // Random position and velocity asteroid constructor
-    X(getRandomInt(0, screenWidth));
-    Y(getRandomInt(0, screenHeight));
+    X(getRandomInt(0, maxXSpawn));
+    Y(getRandomInt(0, maxYSpawn));
     Dx((float)getRandomInt(0,15));
     Dy((float)getRandomInt(0,15));
     Size(size);
@@ -19,15 +18,15 @@ Asteroid::Asteroid(const int screenWidth, const int screenHeight, const int size
     GenerateWireFrameModel();
 }
 
-Asteroid::Asteroid(const float x, const float y, const float dx, const float dy, const int size,
-                   const float theta) : SpaceObject(x, y, dx, dy, size, theta)
+Asteroid::Asteroid(const float x, const float y, 
+                   const float dx, const float dy,
+                   const int size, const float theta) : SpaceObject(x, y, dx, dy, size, theta)
 {
     GenerateWireFrameModel();
 }
 
 Asteroid::Asteroid(const Asteroid& asteroid) : SpaceObject(asteroid)
-{
-}
+{}
 
 void Asteroid::GenerateWireFrameModel()
 {
@@ -41,12 +40,12 @@ void Asteroid::GenerateWireFrameModel()
     }
 }
 
-const float Asteroid::getRandomFloat()
+const inline float Asteroid::getRandomFloat() const
 {
     return (float)rand() / (float)RAND_MAX;
 }
 
-const int Asteroid::getRandomInt(const int min, const int max)
+const inline int Asteroid::getRandomInt(const int min, const int max) const
 {
     if (max < min)
 	{
