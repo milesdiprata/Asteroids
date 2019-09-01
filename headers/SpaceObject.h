@@ -4,10 +4,10 @@
 #include <iostream>
 #include <limits>
 #include <vector>
-#include <utility>
 #include <math.h>
 
-using namespace std;
+using std::vector;
+using std::pair;
 
 class SpaceObject
 {
@@ -18,30 +18,39 @@ public:
     SpaceObject(const SpaceObject &spaceObject);
     ~SpaceObject();
 
-    const float X();
+    const float X() const;
     void X(const float x);
-    const float Y();
+
+    const float Y() const;
     void Y(const float y);
-    const float Dx();
+
+    const float Dx() const;
     void Dx(const float dx);
-    const float Dy();
+
+    const float Dy() const;
     void Dy(const float dy);
-    const int Size();
+
+    const int Size() const;
     void Size(const int size);
-    const float Theta();
+    
+    const float Theta() const;
     void Theta(const float theta);
 
-    const vector<pair<float, float> > WireFrameCoordinatePairs();
+    const vector<pair<float, float> > WireFrameCoordinatePairs() const;
+
     void PushWireFrameCoordinatePair(const float x, const float y);
+
     void GenerateUnitCircleWireFrame(bool shouldUseNoise = false);
 
     void UpdatePosition(const float elapsedTime);
-    const vector<pair<float, float> > ApplyTransformations();
+
+    const vector<pair<float, float> > ApplyTransformations()  const;
     
 
 protected:
     virtual void GenerateWireFrameModel();
     
+
 private:
     float _x;
     float _y;
@@ -50,10 +59,10 @@ private:
     int _size;
     float _theta;
 
-    vector<pair<float, float> > _wireFrameCoordinatePairs;
+    vector<pair<float, float>> _wireFrameCoordinatePairs;
 
-    const float rotateX(const float initialX, const float initialY);
-    const float rotateY(const float initialX, const float initialY);
+    const inline float rotateX(const float initialX, const float initialY) const;
+    const inline float rotateY(const float initialX, const float initialY) const;
 
 
 };
