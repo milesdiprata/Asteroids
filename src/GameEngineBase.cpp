@@ -30,7 +30,7 @@ int GameEngineBase::GetScreenHeight()
     return _screenHeight;
 }
 
-void GameEngineBase::InitalizeGraphics(char * windowTitle, const int width, const int height)
+void GameEngineBase::InitalizeGraphics(const char *windowTitle, const int width, const int height)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
