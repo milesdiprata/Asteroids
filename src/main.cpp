@@ -8,16 +8,14 @@
 #include <iostream>
 #include "AsteroidsGame.h"
 
-using namespace std;
-
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-int main(const int argc, const char * argv[])
+int main(const int argc, const char *const argv[])
 {
     // cout << "Press any key to start the game...";
     // cin.get();
-    AsteroidsGame game;
+    AsteroidsGame::AsteroidsGame game;
     game.InitalizeGraphics("Asteroids", SCREEN_WIDTH, SCREEN_HEIGHT);
     game.Start();
     return 0;

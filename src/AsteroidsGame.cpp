@@ -1,10 +1,10 @@
 #include "AsteroidsGame.h"
 
-using namespace std;
+namespace AsteroidsGame
+{
 
 AsteroidsGame::AsteroidsGame()
-{
-}
+{}
 
 AsteroidsGame::~AsteroidsGame()
 {
@@ -203,7 +203,7 @@ const int AsteroidsGame::getRandomInt(const int min, const int max)
 {
     if (max < min)
 	{
-		cerr << "Error: Max less than min! Cannot generate random number." << endl;
+		std::cerr << "Error: Max less than min! Cannot generate random number." << std::endl;
 		return INT_MIN;
 	}
 	return min + rand() / (RAND_MAX / (max - min + 1) + 1);
@@ -218,3 +218,5 @@ void AsteroidsGame::removeSpaceObject(vector<SpaceObject*>& vector, SpaceObject*
 {
     vector.erase(remove(vector.begin(), vector.end(), spaceObj), vector.end());
 }
+
+} // namespace AsteroidsGame

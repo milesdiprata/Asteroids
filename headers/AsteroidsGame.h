@@ -1,20 +1,21 @@
 #ifndef ASTEROIDSGAME_H
 #define ASTEROIDSGAME_H
 
-#include <iostream>
-#include <limits>
-#include <vector>
+// #include <iostream>
+// #include <limits>
+// #include <vector>
 #include <algorithm>
 #include "GameEngineBase.h"
-#include "SpaceObject.h"
+// #include "SpaceObject.h"
 #include "Asteroid.h"
 
-using namespace std;
+namespace AsteroidsGame
+{
 
-const int MIN_ASTEROID_SIZE = 10;
+static constexpr int MIN_ASTEROID_SIZE = 10;
 
-class Asteroid;
-class SpaceObject;
+// class Asteroid;
+// class SpaceObject;
 
 class AsteroidsGame : public GameEngineBase
 {
@@ -43,8 +44,10 @@ private:
     vector<SpaceObject*> _bullets;
     SpaceObject* _player;
     
-    vector<pair<float, float> > _playerModel;
-    vector<pair<float, float> > _asteroidModel;
+    vector<pair<float, float>> _playerModel;
+    vector<pair<float, float>> _asteroidModel;
 };
+
+} // namespace AsteroidsGame
 
 #endif // ASTEROIDSGAME_H
