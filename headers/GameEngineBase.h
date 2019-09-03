@@ -20,7 +20,7 @@ public:
     GameEngineBase();
     ~GameEngineBase();
 
-	void InitalizeGraphics(const char *windowTitle, const int width, const int height);	
+	void InitalizeGraphics(const char *const windowTitle, const int width, const int height);	
 	const Uint8 *GetKeyState() const;	
 	void DrawLine(const int x1, const int y1, const int x2, const int y2, const Color color);
 	void DrawRectangle(const int x, const int y, const int width, const int height, 
