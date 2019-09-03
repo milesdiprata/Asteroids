@@ -1,12 +1,8 @@
 #ifndef ASTEROIDSGAME_H
 #define ASTEROIDSGAME_H
 
-// #include <iostream>
-// #include <limits>
-// #include <vector>
 #include <algorithm>
 #include "GameEngineBase.h"
-// #include "SpaceObject.h"
 #include "Asteroid.h"
 
 namespace AsteroidsGame
@@ -14,10 +10,7 @@ namespace AsteroidsGame
 
 static constexpr int MIN_ASTEROID_SIZE = 10;
 
-// class Asteroid;
-// class SpaceObject;
-
-class AsteroidsGame : public GameEngineBase
+class AsteroidsGame : public GameEngineBase::GameEngineBase
 {
 public:
     AsteroidsGame();
@@ -32,7 +25,7 @@ public:
 protected:
     virtual void OnUserCreate();
     virtual void OnUserUpdate(const float elaspedTime);
-    virtual void DrawPoint(const int x, const int y, const Color color);
+    virtual void DrawPoint(const int x, const int y, const GameEngineBase::Color color);
 
 private:
     const int getRandomInt(const int min, const int max);

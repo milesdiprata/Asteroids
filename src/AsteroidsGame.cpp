@@ -28,7 +28,7 @@ void AsteroidsGame::WrapCoordinates(SpaceObject* spaceObject)
         spaceObject->Y(spaceObject->Y() - (float)GetScreenHeight());
 }
 
-void AsteroidsGame::DrawPoint(const int x, const int y, const Color color)
+void AsteroidsGame::DrawPoint(const int x, const int y, const GameEngineBase::Color color)
 {
     // float newX, newY;
     // WrapCoordinates(x, y, newX, newY);
@@ -187,7 +187,7 @@ void AsteroidsGame::DrawSpaceObject(SpaceObject* spaceObject)
                  transformedModel[i % numPairs].second, 
                  transformedModel[j % numPairs].first, 
                  transformedModel[j % numPairs].second, 
-                 WHITE);
+                 GameEngineBase::Color::WHITE);
     }
 }
 

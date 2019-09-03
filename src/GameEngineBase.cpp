@@ -1,7 +1,7 @@
-#include <iostream>
 #include "GameEngineBase.h"
 
-using namespace std;
+namespace GameEngineBase
+{
 
 GameEngineBase::GameEngineBase()
 {
@@ -20,12 +20,12 @@ GameEngineBase::~GameEngineBase()
 	SDL_Quit();
 }
 
-int GameEngineBase::GetScreenWidth()
+const int GameEngineBase::GetScreenWidth() const
 {
     return _screenWidth;
 }
 
-int GameEngineBase::GetScreenHeight()
+const int GameEngineBase::GetScreenHeight() const
 {
     return _screenHeight;
 }
@@ -34,7 +34,7 @@ void GameEngineBase::InitalizeGraphics(const char *windowTitle, const int width,
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
-		cerr << "Error initalizing SDL! SDL Error: " << SDL_GetError() << endl;
+		std::cerr << "Error initalizing SDL! SDL Error: " << SDL_GetError() << std::endl;
 		return;
 	}
 
@@ -51,19 +51,19 @@ void GameEngineBase::InitalizeGraphics(const char *windowTitle, const int width,
     }
     else
     {
-        cerr << "Error: invalid screen dimensions!" << endl;
+        std::cerr << "Error: invalid screen dimensions!" << std::endl;
         return;
     }
 	
 	if (_window == nullptr)
 	{
-		cerr << "Error creating the SDL window! SDL Error: " << SDL_GetError() << endl;
+		std::cerr << "Error creating the SDL window! SDL Error: " << SDL_GetError() << std::endl;
 		return;
 	}
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 	if (_renderer == nullptr)
 	{
-		cerr << "Error creating the SDL renderer! SDL Error: " << SDL_GetError() << endl;
+		std::cerr << "Error creating the SDL renderer! SDL Error: " << SDL_GetError() << std::endl;
 		return;
 	}
 }
@@ -200,7 +200,7 @@ void GameEngineBase::DrawRectangle(const int x, const int y, const int width, co
 	SDL_RenderFillRect(_renderer, &fillArea);
 }
 
-const Uint8 * GameEngineBase::GetKeyState()
+const Uint8 *GameEngineBase::GetKeyState() const
 {
     const Uint8 * keyState = SDL_GetKeyboardState(nullptr);
     
@@ -210,7 +210,7 @@ const Uint8 * GameEngineBase::GetKeyState()
     return nullptr;
 }
 
-bool GameEngineBase::HasUserQuit()
+const bool GameEngineBase::HasUserQuit() const
 {
 	SDL_Event e;
 	if (SDL_PollEvent(&e))
@@ -220,7 +220,7 @@ bool GameEngineBase::HasUserQuit()
 	return false;
 }
 
-void GameEngineBase::Start()
+void GameEngineBase::Start(const int fps)
 {
     float beforeFrameTime;
     float afterFrameTime;
@@ -233,8 +233,8 @@ void GameEngineBase::Start()
         beforeFrameTime = (float)SDL_GetTicks();
 
         // Regulate FPS; not using SDL_Delay due to bad accuracy
-        while (SDL_GetTicks() - beforeFrameTime < 1000.0f / FRAMES_PER_SECOND)
-        { }
+        while (SDL_GetTicks() - beforeFrameTime < 1000.0f / fps)
+        {}
 
         // Get time after frame
         afterFrameTime = (float)SDL_GetTicks();
@@ -248,10 +248,9 @@ void GameEngineBase::Start()
 }
 
 void GameEngineBase::OnUserCreate()
-{
-}
+{}
 
 void GameEngineBase::OnUserUpdate(const float elaspedTime)
-{    
-}
+{}
 
+} // namespace GameEngineBase
