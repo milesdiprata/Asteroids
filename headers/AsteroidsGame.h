@@ -19,8 +19,8 @@ public:
 
     void WrapCoordinates(SpaceObject *spaceObject);
     void HandleUserInput(const float elapsedTime);
-    const inline bool ShouldDisposeBullet(SpaceObject *bullet) const;
-    void DrawSpaceObject(SpaceObject *spaceObject);
+    const inline bool ShouldDisposeBullet(SpaceObject *const bullet) const;
+    void DrawSpaceObject(SpaceObject *const spaceObject);
     const inline bool IsPointInsideCircle(const float circleX, const float circleY, const float circleSize,
                                           const float pointX, const float pointY) const;
 protected:
@@ -31,15 +31,12 @@ protected:
 private:
     const inline int getRandomInt(const int min, const int max) const;
     const inline float getRandomFloat() const;
-    inline void removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj);
+    inline void removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *const spaceObj);
 
 
     vector<SpaceObject*> _asteroids;
     vector<SpaceObject*> _bullets;
     Player *_player;
-    
-    vector<pair<float, float>> _playerModel;
-    vector<pair<float, float>> _asteroidModel;
 };
 
 } // namespace AsteroidsGame

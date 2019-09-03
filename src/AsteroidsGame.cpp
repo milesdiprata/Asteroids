@@ -91,7 +91,7 @@ void AsteroidsGame::HandleUserInput(const float elapsedTime)
 
 }
 
-const inline bool AsteroidsGame::ShouldDisposeBullet(SpaceObject *bullet) const
+const inline bool AsteroidsGame::ShouldDisposeBullet(SpaceObject *const bullet) const
 {
     return bullet != nullptr && 
         (bullet->X() < 1 || bullet->X() > GetScreenWidth() 
@@ -167,7 +167,7 @@ void AsteroidsGame::OnUserUpdate(const float elapsedTime)
 
 }
 
-void AsteroidsGame::DrawSpaceObject(SpaceObject *spaceObject)
+void AsteroidsGame::DrawSpaceObject(SpaceObject *const spaceObject)
 {
     vector<pair<float, float>> transformedModel = spaceObject->ApplyTransformations();
     int numPairs = transformedModel.size();
@@ -207,7 +207,7 @@ const inline float AsteroidsGame::getRandomFloat() const
     return (float)rand() / (float)RAND_MAX;
 }
 
-inline void AsteroidsGame::removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj)
+inline void AsteroidsGame::removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *const spaceObj)
 {
     vector.erase(remove(vector.begin(), vector.end(), spaceObj), vector.end());
 }
