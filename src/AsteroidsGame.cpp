@@ -16,7 +16,7 @@ AsteroidsGame::~AsteroidsGame()
     //     delete b;
 }
 
-void AsteroidsGame::WrapCoordinates(SpaceObject* spaceObject)
+void AsteroidsGame::WrapCoordinates(SpaceObject *spaceObject)
 {
     if (spaceObject->X() < 0.0f)
         spaceObject->X(spaceObject->X() + (float)GetScreenWidth());
@@ -98,7 +98,7 @@ void AsteroidsGame::HandleUserInput(const float elapsedTime)
 
 }
 
-const bool AsteroidsGame::ShouldDisposeBullet(SpaceObject* bullet)
+const inline bool AsteroidsGame::ShouldDisposeBullet(SpaceObject *bullet) const
 {
     return bullet != nullptr && 
         (bullet->X() < 1 || bullet->X() > GetScreenWidth() 
@@ -174,7 +174,7 @@ void AsteroidsGame::OnUserUpdate(const float elapsedTime)
 
 }
 
-void AsteroidsGame::DrawSpaceObject(SpaceObject* spaceObject)
+void AsteroidsGame::DrawSpaceObject(SpaceObject *spaceObject)
 {
     vector<pair<float, float>> transformedModel = spaceObject->ApplyTransformations();
     int numPairs = transformedModel.size();
@@ -183,23 +183,23 @@ void AsteroidsGame::DrawSpaceObject(SpaceObject* spaceObject)
     for (int i = 0; i < numPairs; i++)
     {
         int j = i + 1;
-        DrawLine(transformedModel[i % numPairs].first,
-                 transformedModel[i % numPairs].second, 
-                 transformedModel[j % numPairs].first, 
-                 transformedModel[j % numPairs].second, 
-                 GameEngineBase::Color::WHITE);
+        GameEngineBase::DrawLine(transformedModel[i % numPairs].first,
+                                 transformedModel[i % numPairs].second,
+                                 transformedModel[j % numPairs].first,
+                                 transformedModel[j % numPairs].second,
+                                 GameEngineBase::Color::WHITE);
     }
 }
 
-const bool AsteroidsGame::IsPointInsideCircle(const float circleX, const float circleY, 
-                                              const float circleSize, const float pointX, 
-                                              const float pointY)
+const inline  bool AsteroidsGame::IsPointInsideCircle(const float circleX, const float circleY, 
+                                                      const float circleSize, const float pointX,
+                                                      const float pointY) const
 {
     return sqrtf( ((pointX - circleX) * (pointX - circleX)) + 
                   ((pointY - circleY) * (pointY - circleY)) ) < circleSize;
 }
 
-const int AsteroidsGame::getRandomInt(const int min, const int max)
+const inline int AsteroidsGame::getRandomInt(const int min, const int max) const
 {
     if (max < min)
 	{
@@ -209,12 +209,12 @@ const int AsteroidsGame::getRandomInt(const int min, const int max)
 	return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
 
-const float AsteroidsGame::getRandomFloat()
+const inline float AsteroidsGame::getRandomFloat() const
 {
     return (float)rand() / (float)RAND_MAX;
 }
 
-void AsteroidsGame::removeSpaceObject(vector<SpaceObject*>& vector, SpaceObject*& spaceObj)
+void AsteroidsGame::removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj)
 {
     vector.erase(remove(vector.begin(), vector.end(), spaceObj), vector.end());
 }

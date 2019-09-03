@@ -16,21 +16,21 @@ public:
     AsteroidsGame();
     ~AsteroidsGame();
 
-    void WrapCoordinates(SpaceObject* spaceObject);
+    void WrapCoordinates(SpaceObject *spaceObject);
     void HandleUserInput(const float elapsedTime);
-    const bool ShouldDisposeBullet(SpaceObject* bullet);
-    void DrawSpaceObject(SpaceObject* spaceObject);
-    const bool IsPointInsideCircle(const float circleX, const float circleY, const float circleSize,
-                                   const float pointX, const float pointY);
+    const inline bool ShouldDisposeBullet(SpaceObject *bullet) const;
+    void DrawSpaceObject(SpaceObject *spaceObject);
+    const inline bool IsPointInsideCircle(const float circleX, const float circleY, const float circleSize,
+                                          const float pointX, const float pointY) const;
 protected:
     virtual void OnUserCreate();
     virtual void OnUserUpdate(const float elaspedTime);
     virtual void DrawPoint(const int x, const int y, const GameEngineBase::Color color);
 
 private:
-    const int getRandomInt(const int min, const int max);
-    const float getRandomFloat();
-    void removeSpaceObject(vector<SpaceObject*>& vector, SpaceObject*& spaceObj);
+    const inline int getRandomInt(const int min, const int max) const;
+    const inline float getRandomFloat() const;
+    void removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj);
 
 
     vector<SpaceObject*> _asteroids;
