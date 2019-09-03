@@ -31,12 +31,12 @@ protected:
 private:
     const inline int getRandomInt(const int min, const int max) const;
     const inline float getRandomFloat() const;
-    void removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj);
+    inline void removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj);
 
 
     vector<SpaceObject*> _asteroids;
     vector<SpaceObject*> _bullets;
-    SpaceObject* _player;
+    Player *_player;
     
     vector<pair<float, float>> _playerModel;
     vector<pair<float, float>> _asteroidModel;

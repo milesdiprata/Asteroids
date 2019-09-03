@@ -38,7 +38,7 @@ void AsteroidsGame::DrawPoint(const int x, const int y, const GameEngineBase::Co
 void AsteroidsGame::OnUserCreate()
 {
     srand(time(NULL));
-    
+
     // Create player
     _player = new Player(GetScreenWidth() / 2.0f, 
                          GetScreenHeight() / 2.0f,
@@ -51,7 +51,7 @@ void AsteroidsGame::OnUserCreate()
 
 void AsteroidsGame::HandleUserInput(const float elapsedTime)
 {
-    const Uint8 *keyState = GetKeyState();
+    const Uint8 *keyState = GameEngineBase::GetKeyState();
     SDL_Event e;
     
     // Steer
@@ -73,6 +73,7 @@ void AsteroidsGame::HandleUserInput(const float elapsedTime)
     // Create bullet entity
     if (keyState[SDL_SCANCODE_SPACE] && SDL_PollEvent(&e) && e.type == SDL_KEYUP)
     {
+        // TODO: Bullet class
         SpaceObject* newBullet = new SpaceObject(_player->X() + (15.0f * sinf(_player->Theta())), 
                                                  _player->Y() + (15.0f * -cosf(_player->Theta())),200.0f * sinf(_player->Theta()),
                                                  200.0f * -cosf(_player->Theta()), 
@@ -206,7 +207,7 @@ const inline float AsteroidsGame::getRandomFloat() const
     return (float)rand() / (float)RAND_MAX;
 }
 
-void AsteroidsGame::removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj)
+inline void AsteroidsGame::removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *spaceObj)
 {
     vector.erase(remove(vector.begin(), vector.end(), spaceObj), vector.end());
 }
