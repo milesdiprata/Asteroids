@@ -3,6 +3,9 @@
 
 #include "SpaceObject.h"
 
+namespace AsteroidsGame
+{
+
 class Asteroid : public SpaceObject
 {
 public: 
@@ -22,5 +25,7 @@ private:
 
 
 };
+
+} // namespace AsteroidsGame
 
 #endif // ASTEROID_H

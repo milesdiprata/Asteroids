@@ -9,6 +9,9 @@
 using std::vector;
 using std::pair;
 
+namespace AsteroidsGame
+{
+
 class SpaceObject
 {
 public:
@@ -66,5 +69,7 @@ private:
 
 
 };
+
+} // namespace AsteroidsGame
 
 #endif // SPACEOBJECT_H

@@ -1,5 +1,8 @@
 #include "Asteroid.h"
 
+namespace AsteroidsGame
+{
+
 Asteroid::Asteroid() : SpaceObject()
 {}
 
@@ -52,3 +55,5 @@ const inline int Asteroid::getRandomInt(const int min, const int max) const
 	}
 	return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
+
+} // namespace AsteroidsGame

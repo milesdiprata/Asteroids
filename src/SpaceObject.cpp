@@ -1,5 +1,8 @@
 #include "SpaceObject.h"
 
+namespace AsteroidsGame
+{
+
 SpaceObject::SpaceObject()
 {}
 
@@ -139,3 +142,5 @@ const inline float SpaceObject::rotateY(const float initialX, const float initia
 
 void SpaceObject::GenerateWireFrameModel()
 {}
+
+} // namespace AsteroidsGame
