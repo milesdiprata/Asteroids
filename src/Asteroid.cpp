@@ -37,7 +37,7 @@ void Asteroid::GenerateWireFrameModel()
         float angle = ((float)i / (float)verts) * 2 * M_PI;
         float noise = getRandomFloat() * 0.5f;
         float radius = 1.0f + noise; // unit circle        
-        PushWireFrameCoordinatePair(radius * cosf(angle), radius * sinf(angle));
+        SpaceObject::PushWireFrameCoordinatePair(radius * cosf(angle), radius * sinf(angle));
     }
 }
 

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "GameEngineBase.h"
 #include "Asteroid.h"
+#include "Player.h"
 
 namespace AsteroidsGame
 {

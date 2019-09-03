@@ -38,19 +38,11 @@ void AsteroidsGame::DrawPoint(const int x, const int y, const GameEngineBase::Co
 void AsteroidsGame::OnUserCreate()
 {
     srand(time(NULL));
-
-    // TODO: Put this in its own class
+    
     // Create player
-    _player = new SpaceObject(GetScreenWidth() / 2.0f, 
-                              GetScreenHeight() / 2.0f, 
-                              0.0f, 
-                              0.0f, 
-                              5, 
-                              0.0f);
-    // Player Wireframe
-    _player->PushWireFrameCoordinatePair(0.0f, -5.0f);
-    _player->PushWireFrameCoordinatePair(-2.5f, 2.5f);
-    _player->PushWireFrameCoordinatePair(2.5f, 2.5f);
+    _player = new Player(GetScreenWidth() / 2.0f, 
+                         GetScreenHeight() / 2.0f,
+                         0.0f, 0.0f, 5, 0.0f);
     
     // Create asteroids
     for (int i = 0; i < 5; i++)
