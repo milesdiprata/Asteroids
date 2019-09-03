@@ -127,22 +127,22 @@ void AsteroidsGame::OnUserUpdate(const float elapsedTime)
         if (!ShouldDisposeBullet(b))
             DrawSpaceObject(b);
         else
-            removeSpaceObject(_bullets, b);
+            RemoveSpaceObject(_bullets, b);
         
         // Check for bullet collision with asteroids
         for (auto &a : _asteroids)
         {
             if (IsPointInsideCircle(a->X(), a->Y(), a->Size(), b->X(), b->Y()))
             {
-                removeSpaceObject(_bullets, b);
+                RemoveSpaceObject(_bullets, b);
                 
                 // Create smaller asteroids
                 if (a->Size() > MIN_ASTEROID_SIZE)
                 {
-                    float randAngle = getRandomFloat() * 2 * M_PI;
+                    float randAngle = GetRandomFloat() * 2 * M_PI;
                     Asteroid* firstAsteroidChild = new Asteroid(a->X(), a->Y(), 
                         10.0f * sinf(randAngle), 10.0f * cosf(randAngle), a->Size() / 2, 0.0f);
-                    randAngle = getRandomFloat() * 2 * M_PI;
+                    randAngle = GetRandomFloat() * 2 * M_PI;
                     Asteroid* secondAsteroidChild = new Asteroid(a->X(), a->Y(), 
                         10.0f * sinf(randAngle), 10.0f * cosf(randAngle), a->Size() / 2, 0.0f);
                     newAsteroids.push_back(firstAsteroidChild);
@@ -151,7 +151,7 @@ void AsteroidsGame::OnUserUpdate(const float elapsedTime)
 
                     
                 }
-                removeSpaceObject(_asteroids, a);
+                RemoveSpaceObject(_asteroids, a);
             }
         }
 
@@ -192,7 +192,7 @@ const inline  bool AsteroidsGame::IsPointInsideCircle(const float circleX, const
                   ((pointY - circleY) * (pointY - circleY)) ) < circleSize;
 }
 
-const inline int AsteroidsGame::getRandomInt(const int min, const int max) const
+const inline int AsteroidsGame::GetRandomInt(const int min, const int max) const
 {
     if (max < min)
 	{
@@ -202,12 +202,12 @@ const inline int AsteroidsGame::getRandomInt(const int min, const int max) const
 	return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
 
-const inline float AsteroidsGame::getRandomFloat() const
+const inline float AsteroidsGame::GetRandomFloat() const
 {
     return (float)rand() / (float)RAND_MAX;
 }
 
-inline void AsteroidsGame::removeSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *const spaceObj)
+inline void AsteroidsGame::RemoveSpaceObject(vector<SpaceObject*> &vector, const SpaceObject *const spaceObj)
 {
     vector.erase(remove(vector.begin(), vector.end(), spaceObj), vector.end());
 }
